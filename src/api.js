@@ -10,12 +10,12 @@ app.use(bodyParser.json());
 router.get("/", (req, res) => {
     res.set('Content-Type', 'text/html')
     res.status(200)
-    res.send("<h1>Welcome on Server </h1>" +req.body.rownumber)
+    res.send("<h1>Welcome on Server</h1>")
   });
   
   
   router.post('/update',(req,res) => {
-    const rowNumber = req.body.rownumber
+    const rowNumber = req.body
     console.log("Rows: ", rowNumber)
     res.end()
   })

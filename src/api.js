@@ -5,19 +5,17 @@ const router = express.Router()
 const app = express()
 
 app.use(bodyParser.urlencoded({extended: false}))
-app.use(express.urlencoded())
+app.use(bodyParser.json());
 
-/*router.get("/", (req, res) => {
+router.get("/", (req, res) => {
     res.set('Content-Type', 'text/html')
     res.status(200)
     res.send("<h1>Welcome on Server</h1>")
-    const rowNumber = req.body
-    console.log("Rows: ", rowNumber)
-  });*/
+  });
   
   
-  router.post('/',(req,res) => {
-    const rowNumber = req.body
+  router.post('/update',(req,res) => {
+    const rowNumber = req.body.rownumber
     console.log("Rows: ", rowNumber)
     res.end()
   })

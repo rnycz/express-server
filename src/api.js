@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 router.get("/", (req, res) => {
     res.set('Content-Type', 'text/html')
     res.status(200)
-    res.send("<h1>Welcome on Server</h1>")
+    res.send("<h1>Welcome on Server </h1>" +req.body.rownumber)
   });
   
   

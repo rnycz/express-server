@@ -8,6 +8,8 @@ router.get("/", (req, res) => {
     res.set('Content-Type', 'text/html')
     res.status(200)
     res.send("<h1>Welcome on Server</h1>")
+    const rowNumber = req.body.row_number
+    res.send(`Liczba wierszy: ${rowNumber}`)
   });
   
   

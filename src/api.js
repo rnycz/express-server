@@ -1,23 +1,31 @@
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const express = require('express')
 const serverless = require('serverless-http')
 const router = express.Router()
 const app = express()
 
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json());
+router.use(cors())
+router.use(bodyParser.json())
+router.use(bodyParser.urlencoded({ extended: true }))
+
+const rows = []
+let idCounter = rows.length
 
 router.get("/", (req, res) => {
-    res.set('Content-Type', 'text/html')
-    res.status(200)
-    res.send("<h1>Welcome on Server</h1>")
-  });
+    const result = 
+    rows.reduce((sum, el) => sum + el.rowsnumber, 0)
+      res.send(`<h2>Serwer</h2>
+      <div>Liczba wierszy:  ${result}</div>`);
+});
   
-  
-  router.post('/update',(req,res) => {
-    const rowNumber = req.body
-    console.log("Rows: ", rowNumber)
-    res.end()
+  router.post('/update', (req,res) => {
+    const row = {
+      id: ++idCounter,
+      rowsnumber: req.body.rowsnumber
+    }
+    rows.push(row)
+    res.status(201)
   })
   
   app.use(`/.netlify/functions/api`, router);

@@ -13,8 +13,7 @@ const rows = []
 let idCounter = rows.length
 
 router.get("/", (req, res) => {
-    const result = 
-    rows.reduce((sum, el) => sum + el.rowsnumber, 0)
+    const result = rows[rows.length - 1].rowsnumber
       res.send(`<h2>Serwer</h2>
       <div>Liczba wierszy:  ${result}</div>`);
 });
@@ -22,7 +21,7 @@ router.get("/", (req, res) => {
   router.post('/update', (req,res) => {
     const row = {
       id: ++idCounter,
-      rowsnumber: req.body.rowsnumber
+      rowsnumber: req.body.rowsnumber - 1
     }
     rows.push(row)
     res.status(201)

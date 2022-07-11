@@ -13,9 +13,15 @@ const rows = []
 let idCounter = rows.length
 
 router.get("/", (req, res) => {
+  try{
     const result = rows[rows.length - 1].rowsnumber
-      res.send(`<h2>Serwer</h2>
-      <div>Liczba wierszy:  ${result}</div>`);
+    res.send(`<h2>Serwer</h2>
+    <div>Liczba wierszy:  ${result}</div>`);
+  }catch(error){
+    res.send(`<h2>Serwer</h2>
+    <div>Lista jest pusta - odśwież automat</div>
+    <div>${error}</div>`).status(500)
+  }
 });
   
   router.post('/update', (req,res) => {
